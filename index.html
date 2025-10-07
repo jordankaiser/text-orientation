@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vertical Text Demo</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #f5f5f5;
+    }
+
+    .vertical-sideways {
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      background: #e0f7fa;
+      padding: 1rem;
+      border: 2px solid #00acc1;
+    }
+
+    .vertical-upright {
+      writing-mode: vertical-rl;
+      text-orientation: upright;
+      white-space: nowrap;
+      background: #fce4ec;
+      padding: 1rem;
+      border: 2px solid #ec407a;
+    }
+
+    .label {
+      text-align: center;
+      margin-top: 1rem;
+    }
+
+    .example {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="example">
+    <div class="vertical-sideways">Vertical text (sideways)</div>
+    <div class="label">writing-mode: vertical-rl; text-orientation: mixed;</div>
+  </div>
+
+  <div class="example">
+    <div class="vertical-upright">VERTICAL</div>
+    <div class="label">writing-mode: vertical-rl; text-orientation: upright;</div>
+  </div>
+</body>
+</html>
