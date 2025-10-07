@@ -10,8 +10,10 @@
       display: flex;
       gap: 2rem;
       justify-content: center;
-      align-items: center;
-      height: 100vh;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      padding: 2rem;
+      min-height: 100vh;
       background: #f5f5f5;
     }
 
@@ -32,6 +34,54 @@
       border: 2px solid #ec407a;
     }
 
+    /* Force multiple columns in vertical writing by limiting inline length */
+    .columns {
+      inline-size: 8rem;  /* logical inline dimension (vertical in vertical writing) */
+      height: 8rem;       /* fallback for browsers without inline-size */
+      overflow: hidden;
+    }
+    .vertical-upright.columns {
+      white-space: normal; /* allow wrapping so new columns can appear */
+    }
+
+    .horizontal {
+      writing-mode: horizontal-tb; /* default */
+      background: #e8f5e9;
+      padding: 1rem;
+      border: 2px solid #43a047;
+    }
+
+    .vertical-lr-mixed {
+      writing-mode: vertical-lr;
+      text-orientation: mixed;
+      background: #fff3e0;
+      padding: 1rem;
+      border: 2px solid #fb8c00;
+    }
+
+    .vertical-lr-upright {
+      writing-mode: vertical-lr;
+      text-orientation: upright;
+      white-space: nowrap;
+      background: #ede7f6;
+      padding: 1rem;
+      border: 2px solid #5e35b1;
+    }
+
+    .sideways-rl {
+      writing-mode: sideways-rl;
+      background: #fffde7;
+      padding: 1rem;
+      border: 2px solid #fdd835;
+    }
+
+    .sideways-lr {
+      writing-mode: sideways-lr;
+      background: #e1f5fe;
+      padding: 1rem;
+      border: 2px solid #039be5;
+    }
+
     .label {
       text-align: center;
       margin-top: 1rem;
@@ -46,13 +96,49 @@
 </head>
 <body>
   <div class="example">
+    <div class="horizontal">Horizontal text (default)</div>
+    <div class="label">writing-mode: horizontal-tb; lines: left→right; blocks: top→bottom</div>
+  </div>
+
+  <div class="example">
     <div class="vertical-sideways">Vertical text (sideways)</div>
-    <div class="label">writing-mode: vertical-rl; text-orientation: mixed;</div>
+    <div class="label">writing-mode: vertical-rl; text-orientation: mixed; lines: top→bottom; columns: right→left</div>
   </div>
 
   <div class="example">
     <div class="vertical-upright">VERTICAL</div>
-    <div class="label">writing-mode: vertical-rl; text-orientation: upright;</div>
+    <div class="label">writing-mode: vertical-rl; text-orientation: upright; lines: top→bottom; columns: right→left</div>
+  </div>
+
+  <!-- Columns demo: RL vs LR column progression -->
+  <div class="example">
+    <div class="vertical-sideways columns">Vertical columns demo with mixed orientation. This sentence repeats to force wrapping and show multiple columns. Vertical columns demo with mixed orientation. This sentence repeats to force wrapping and show multiple columns.</div>
+    <div class="label">vertical-rl; mixed; constrained height → columns progress right→left</div>
+  </div>
+
+  <div class="example">
+    <div class="vertical-lr-mixed columns">Vertical columns demo with mixed orientation. This sentence repeats to force wrapping and show multiple columns. Vertical columns demo with mixed orientation. This sentence repeats to force wrapping and show multiple columns.</div>
+    <div class="label">vertical-lr; mixed; constrained height → columns progress left→right</div>
+  </div>
+
+  <div class="example">
+    <div class="vertical-lr-mixed">Vertical text (left-to-right columns)</div>
+    <div class="label">writing-mode: vertical-lr; text-orientation: mixed; lines: top→bottom; columns: left→right</div>
+  </div>
+
+  <div class="example">
+    <div class="vertical-lr-upright">VERTICAL</div>
+    <div class="label">writing-mode: vertical-lr; text-orientation: upright; lines: top→bottom; columns: left→right</div>
+  </div>
+
+  <div class="example">
+    <div class="sideways-rl">Sideways RL (all glyphs sideways)</div>
+    <div class="label">writing-mode: sideways-rl; lines: top→bottom; columns: right→left</div>
+  </div>
+
+  <div class="example">
+    <div class="sideways-lr">Sideways LR (all glyphs sideways)</div>
+    <div class="label">writing-mode: sideways-lr; lines: top→bottom; columns: left→right</div>
   </div>
 </body>
 </html>
